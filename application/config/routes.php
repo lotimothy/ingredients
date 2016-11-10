@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+ 
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -52,5 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // this is the default controller. You need to change it depending on your project
 $route['default_controller'] = 'users';
+$route['recipes'] = '/users/recipes';
+$route['crawl'] = '/users/crawl';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
