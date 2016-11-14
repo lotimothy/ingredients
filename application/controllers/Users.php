@@ -21,7 +21,6 @@ class Users extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->output->enable_profiler();
  
 	}
 	public function index()
@@ -31,23 +30,25 @@ class Users extends CI_Controller {
 	public function crawl() {
 		ini_set('include_path', APPPATH.'libraries/');
 		$this->load->library("simple_html_dom");
-		$result = array();
-		$recipes = $this->input->post('recipe');
-		foreach($recipes as $recipe) {
-			$html = new simple_html_dom();
-			$html->load_file($recipe);
-			$container = array();
-			foreach($html->find('h1[itemprop="name"]') as $title) {
-				$container["title"] = $title;
-			}
-			$ingredients = array();
-			foreach($html->find('*[itemprop="ingredients"]') as $element) { 
-				array_push($ingredients, $element);
-			}
-			$container["ingredients"] = $ingredients;
-			array_push($result, $container);
-		}
-		echo json_encode($result);
+		var_dump($this->input->post());
+
+		// $result = array();
+		// $recipes = json_decode($this->input->post());
+		// foreach($recipes as $recipe) {
+		// 	$html = new simple_html_dom();
+		// 	$html->load_file($recipe);
+		// 	$container = array();
+		// 	foreach($html->find('h1[itemprop="name"]') as $title) {
+		// 		$container["title"] = $title->innertext;
+		// 	}
+		// 	$ingredients = array();
+		// 	foreach($html->find('*[itemprop="ingredients"]') as $element) { 
+		// 		array_push($ingredients, $element->innertext);
+		// 	}
+		// 	$container["ingredients"] = $ingredients;
+		// 	array_push($result, $container);
+		// }
+		// echo json_encode($result);
 		// $this->load->view('recipes', array('result' => $result));
 
 	}
