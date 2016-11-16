@@ -18,6 +18,7 @@ app.factory("ingredientFactory", function($http){
 		})
 	}
 	factory.retrieveIngredients = function(urls, callback){
+		console.log("in the factory we have", urls);
 		$http.post('/crawl', urls).then(function(data){
 			console.log(data);
 			callback(data);
@@ -43,8 +44,9 @@ app.controller("ingredientsController", function($scope, $compile, ingredientFac
 	}
 
 	$scope.get = function(){
+		console.log("from the form we get", angular.toJson($scope.urls));
 		ingredientFactory.retrieveIngredients($scope.urls, function(data){
-			$scope.ingredients = data;
+			$scope.ingredients = data.data;
 		})
 		console.log($scope.ingredients);
 	}
