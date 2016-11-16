@@ -29,6 +29,14 @@
 </head>
 <body ng-app="recipes">
 <div class="container" ng-controller="ingredientsController">
+<ul>
+	<li ng-repeat="thing in ingredients">
+	{{thing.title}}
+	<ul>
+		<li ng-repeat="ingredient in thing.ingredients">{{ingredient}} </li>
+	</ul>
+	</li>
+</ul>
 	<a href="#/show_ingredients">Show Ingredients</a>
 	<div ng-view></div>
 <h4> How many recipes do you have? </h4>
@@ -43,6 +51,8 @@
 	<button class="btn waves-effect waves-light center-align" type="submit">Crawl It</button>
 </form>
 </div>
+
+
 	<script>
 			// $('a').click(function(){
 			// 	var numRecipes = $('#numRecipes').val();

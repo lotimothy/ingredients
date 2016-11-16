@@ -18,10 +18,9 @@ app.factory("ingredientFactory", function($http){
 		})
 	}
 	factory.retrieveIngredients = function(urls, callback){
-		console.log("in the factory we have", urls);
 		$http.post('/crawl', urls).then(function(data){
-			console.log(data);
-			callback(data);
+			console.log(data.data);
+			callback(data.data);
 		})
 	}
 	return factory;
@@ -29,9 +28,6 @@ app.factory("ingredientFactory", function($http){
 app.controller("ingredientsController", function($scope, $compile, ingredientFactory){
 	console.log("this is where the controller starts");
 	$scope.ingredients = [];
-	ingredientFactory.index(function(data){
-		$scope.ingredients = data;
-	})
 
 	$scope.addUrls = function() {
 		for (var i = $scope.numRecipes; i > 0; i--) {
@@ -44,10 +40,12 @@ app.controller("ingredientsController", function($scope, $compile, ingredientFac
 	}
 
 	$scope.get = function(){
-		console.log("from the form we get", angular.toJson($scope.urls));
 		ingredientFactory.retrieveIngredients($scope.urls, function(data){
-			$scope.ingredients = data.data;
+			 
+			$scope.ingredients = data;
+			console.log("inside of get function", $scope.ingredients);
 		})
-		console.log($scope.ingredients);
+		console.log("outside of get function", $scope.ingredients);
 	}
+
 })
