@@ -31,7 +31,7 @@
 <div class="container" ng-controller="ingredientsController">
 <ul>
 	<li ng-repeat="thing in ingredients">
-	{{thing.title}}
+	<h4>{{thing.title}}</h4>
 	<ul>
 		<li ng-repeat="ingredient in thing.ingredients">{{ingredient}} </li>
 	</ul>
@@ -45,8 +45,8 @@
 	<label for="numRecipes">How many recipes do you have?</label>
 </div>
 <a ng-click="addUrls()" class="btn waves-effect waves-light center-align">Submit</a>
-<form id="siteEntry" ng-submit="get()">
-	<div class="input-field">
+<form ng-submit="get()">
+	<div id="siteEntry">
 	</div>
 	<button class="btn waves-effect waves-light center-align" type="submit">Crawl It</button>
 </form>
