@@ -1,4 +1,5 @@
 var app = angular.module('recipes', ['ngRoute']);
+
 app.config(function($httpProvider, $routeProvider){
 	$routeProvider
 		.when("/show_ingredients", {
@@ -10,12 +11,12 @@ app.config(function($httpProvider, $routeProvider){
     	};
     	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 })
+
 app.factory("ingredientFactory", function($http){
 	var factory = {};
-
+	console.log("in the ingredientfactory");
 	var parseIngredient = function(ingredients) {
-		var dictionary = ["gallon", "gallons", "pounds", "pound", "quarts", "quart", "cups", "cup", "pints", "pint", 
-"tablespoon", "tablespoons", "teaspoon", "teaspoons", "ounces", "ounce"];
+		var dictionary = ["gallon", "gallons", "pounds", "pound", "quarts", "quart", "cups", "cup", "pints", "pint",  "tablespoon", "tablespoons", "teaspoon", "teaspoons", "ounces", "ounce"];
 		var parsed = [];
 		ingredients.forEach(function(strings){
 			var objecta = {};
@@ -63,7 +64,6 @@ app.factory("ingredientFactory", function($http){
 			}
 			parsed.push(objecta);
 		});
-	// console.log(parsed);
 	return parsed;
 	}
 
@@ -77,13 +77,11 @@ app.factory("ingredientFactory", function($http){
 					if (result[ingredient["item"]]["unit"].slice(0, 3) == ingredient["unit"].slice(0, 3)) {
 						result[ingredient["item"]]["num"]+=ingredient["num"];
 					} else {
-
 						var first = { num: result[ingredient["item"]]["num"], unit: result[ingredient["item"]]["unit"]}
 						var second = {num: ingredient["num"], unit: ingredient["unit"]}
 						var combined = combineUnits(first, second);
 						result[ingredient["item"]]["num"] = combined["num"];
 						result[ingredient["item"]]["unit"] = combined["unit"];
-
 					}
 				} else {
 					result[ingredient["item"]]["num"]+=ingredient["num"]
@@ -94,10 +92,8 @@ app.factory("ingredientFactory", function($http){
 	}
 	
 	var combineUnits = function(first, second) {
-		// var volume = ["tea", "tab", "cup"];
 		var liquids = ["tea", "tab", "cup", "pin", "qua", "gal"];
 		var weight = ["pou", "oun"];
-
 		if (weight.includes(first["unit"].slice(0,3))) {
 			var firstNum = first["num"];
 			var secondNum = second["num"];
@@ -108,7 +104,6 @@ app.factory("ingredientFactory", function($http){
 				secondNum = secondNum/16;
 			}
 			return { num: firstNum + secondNum, unit: "pounds"}
-
 		} else if (liquids.includes(first["unit"].slice(0,3))) {
 			var firstNum = first["num"];
 			var secondNum = second["num"];
@@ -121,7 +116,6 @@ app.factory("ingredientFactory", function($http){
 				var same = second;
 				var toConvert = first;
 			}
-
 			if (convertingUnit == "gal") {
 				if (toConvert["unit"].slice(0,3) == "qua") {
 					toConvert["num"] = toConvert["num"]/4
@@ -144,7 +138,6 @@ app.factory("ingredientFactory", function($http){
 				} else if (toConvert["unit"].slice(0,3) == "tea") {
 					toConvert["num"] = toConvert["num"]/384 
 				} 
-
 			} else if (convertingUnit == "pin") {
 				if (toConvert["unit"].slice(0,3) == "cup") {
 					toConvert["num"] = toConvert["num"]/2
@@ -167,15 +160,8 @@ app.factory("ingredientFactory", function($http){
 			}
 			return {num: same["num"] + toConvert["num"], unit: same["unit"]}
 		} else {
-
-
+			console.log("fix that some other unit");
 		}
-
-		// gallons, quarts, cups, pints
-
-		// pounds ounces
-
-		// tablespoons/teaspoons/cups
 
 	}
 	factory.index = function(callback){
@@ -197,10 +183,10 @@ app.factory("ingredientFactory", function($http){
 	}
 	return factory;
 })
-app.controller("ingredientsController", function($scope, $compile, $location, ingredientFactory){
-	console.log("this is where the controller starts");
-	$scope.ingredients = [];
 
+app.controller("ingredientsController", function($scope, $compile, $location, ingredientFactory){
+	console.log("controller starts");
+	$scope.ingredients = [];
 	$scope.addUrls = function() {
 		$('#siteEntry').html("");
 		for (var i = $scope.numRecipes; i > 0; i--) {
@@ -214,9 +200,8 @@ app.controller("ingredientsController", function($scope, $compile, $location, in
 
 	$scope.get = function(){
 		ingredientFactory.retrieveIngredients($scope.urls, function(data){
-			 
 			$scope.ingredients = data;
-			console.log("inside of get function", $scope.ingredients);
+			console.log("inside get function", $scope.ingredients);
 		})
 		$location.path('/show_ingredients');
 	}
