@@ -19,6 +19,7 @@ app.factory("ingredientFactory", function($http){
 		var parsed = [];
 		ingredients.forEach(function(strings){
 			var objecta = {};
+			strings = strings.toLowerCase();
 			if (!strings.match(/[0-9]/)) { // no number (or unit)
 				objecta["num"] = 1;
 				if(strings.includes(",")){ // has comment
@@ -191,19 +192,12 @@ app.factory("ingredientFactory", function($http){
 			})
 			allIngredients = [].concat.apply([], allIngredients);
 			allIngredients = combineIngredients(allIngredients);
-			console.log(allIngredients);
-
-
-
-
-
-
-			callback(data.data);
+			callback(allIngredients);
 		})
 	}
 	return factory;
 })
-app.controller("ingredientsController", function($scope, $compile, ingredientFactory){
+app.controller("ingredientsController", function($scope, $compile, $location, ingredientFactory){
 	console.log("this is where the controller starts");
 	$scope.ingredients = [];
 
@@ -224,7 +218,7 @@ app.controller("ingredientsController", function($scope, $compile, ingredientFac
 			$scope.ingredients = data;
 			console.log("inside of get function", $scope.ingredients);
 		})
-		console.log("outside of get function", $scope.ingredients);
+		$location.path('/show_ingredients');
 	}
 
 })

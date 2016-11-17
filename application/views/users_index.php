@@ -28,16 +28,12 @@
  
 </head>
 <body ng-app="recipes">
+  <p>
+      <input type="checkbox" id="test5" />
+      <label for="test5">hello</label>
+    </p>
+
 <div class="container" ng-controller="ingredientsController">
-<ul>
-	<li ng-repeat="thing in ingredients">
-	<h4>{{thing.title}}</h4>
-	<ul>
-		<li ng-repeat="ingredient in thing.ingredients">{{ingredient}} </li>
-	</ul>
-	</li>
-</ul>
-	<a href="#/show_ingredients">Show Ingredients</a>
 	<div ng-view></div>
 <h4> How many recipes do you have? </h4>
 <div class="input-field">

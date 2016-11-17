@@ -1,8 +1,14 @@
-<ul>
-	<li ng-repeat="ingredient in ingredients">{{ingredient.title}}</li>
-</ul>
-<p>Hello</p>
-http://www.foodnetwork.com/recipes/alton-brown/good-eats-roast-turkey-recipe.html
+<table>
+	<tr ng-repeat="item in ingredients">
+		<td>
+			<input type="checkbox" id="{{item.item}}">
+			<label for="{{item.item}}">{{item.num}} {{item.unit}} {{item.item}}</label>
+		</td>
+		<td>{{item.notes}}</td>
+	</tr>
+</table>
+
+<!-- http://www.foodnetwork.com/recipes/alton-brown/good-eats-roast-turkey-recipe.html
 http://www.foodnetwork.com/recipes/ina-garten/perfect-roast-turkey-recipe4.html
 http://www.foodnetwork.com/recipes/tyler-florence/mashed-potatoes-recipe.html
-http://www.foodnetwork.com/recipes/giada-de-laurentiis/ciabatta-stuffing-with-chestnuts-and-pancetta-recipe.html
+http://www.foodnetwork.com/recipes/giada-de-laurentiis/ciabatta-stuffing-with-chestnuts-and-pancetta-recipe.html -->
