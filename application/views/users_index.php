@@ -30,11 +30,11 @@
 			</div>
 			<button class="btn waves-effect waves-light center-align" type="submit">Crawl It</button>
 		</form>
-		<p>http://www.foodnetwork.com/recipes/alton-brown/good-eats-roast-turkey-recipe.html<br>
-			http://www.foodnetwork.com/recipes/ina-garten/perfect-roast-turkey-recipe4.html<br>
-			http://www.foodnetwork.com/recipes/tyler-florence/mashed-potatoes-recipe.html<br>
-			http://www.foodnetwork.com/recipes/giada-de-laurentiis/ciabatta-stuffing-with-chestnuts-and-pancetta-recipe.html<br>
-			http://www.foodnetwork.com/recipes/food-network-kitchens/apple-cobbler-for-two.html<br>
+		<p>http://www.foodnetwork.com/recipes/alton-brown/good-eats-roast-turkey-recipe.html<br><br>
+			http://www.foodnetwork.com/recipes/ina-garten/perfect-roast-turkey-recipe4.html<br><br>
+			http://www.foodnetwork.com/recipes/tyler-florence/mashed-potatoes-recipe.html<br><br>
+			http://www.foodnetwork.com/recipes/giada-de-laurentiis/ciabatta-stuffing-with-chestnuts-and-pancetta-recipe.html<br><br>
+			http://www.foodnetwork.com/recipes/food-network-kitchens/apple-cobbler-for-two.html
 		</p>
 	</div>
 </body>
